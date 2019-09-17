@@ -61,11 +61,29 @@ async def on_message(message):
 
         ## Use 5 cards if not defined, otherwise convert to integer
         num = 5
-        if len(bits)==2:
-            num = int(bits[1])
+        comment = ''
+        sep = ' '
+        if len(bits)>1:
+            if(bits[1]!="#"):
+                num = int(bits[1])
+            elif(bits[1]=="#"):
+                comment = sep.join(bits[2:])
 
-        ## Create a blank message to send to Discord server
-        msg = ''
+        if len(bits)>2:
+            if(bits[2]=="#"):
+                comment = sep.join(bits[3:])
+
+#        msg = ''
+#        if comment!='':
+#            msg =  '**'
+#            msg += comment
+#            msg += '**\n'
+
+        msg = '```md\n'
+        if comment!='':
+            msg += "# "
+            msg += comment
+            msg += '\n'
 
         ## Restrict/check the number of cards to be drawn
         if num>10:
@@ -83,6 +101,8 @@ async def on_message(message):
         ## Creates a single string, with newline characters separateing each card.
         for i in range(1, num+1):
             msg+='Card {0}: {1}\n'.format(i, cards[i-1])
+
+        msg+='```'
 
         ## Send message to channel
         await message.channel.send(msg)
