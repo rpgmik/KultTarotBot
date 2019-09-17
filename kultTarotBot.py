@@ -3,14 +3,14 @@
 ## Bot needs to be given message read and send permissions on the Discord server.
 ## Need to install the discord.py API wrapper (e.g., via: pip install discord.py)
 ##
-## Discord Bot Token needs to be in a file called "tokenFile.txt" which sits in the same 
+## Discord Bot Token needs to be in a file called "tokenFile.txt" which sits in the same
 ## dircetory as this file.
 
 import random
 import discord
 
 ## Read in Discord bot token from file: tokenFile.txt
-f = open('tokenFile.txt', "r")
+f = open('devToken.txt', "r")
 TOKEN = f.readline().rstrip()
 f.close()
 
@@ -22,7 +22,7 @@ names = ["Anthropos", "Demiurge", "Astaroth", "Kether - Hiearchy",
          "Thaumiel - Power", "Chagidiel - Abuse", "Sathariel - Exclusion",
          "Gamichicoth - Fear", "Golab - Torment", "Togarini - Compulsion",
          "Hareb-Serap - Conflict", "Samael - Venegance", "Gamaliel - Lust",
-	 "Nahemoth - Discord", "One of Skulls - Metropolis",
+         "Nahemoth - Discord", "One of Skulls - Metropolis",
       	 "Two of Skulls - Forgetfulness", "Three of Skulls - Remnants",
       	 "Four of Skulls - Spirit", "Five of Skulls - Transition",
       	 "Six of Skulls - Flesh", "Seven of Skulls - Weapon",
