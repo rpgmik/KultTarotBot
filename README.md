@@ -11,3 +11,5 @@ Usage (in Discord):
 ### Feature requests
 - [ ] Ability to add comment with tarot draw
 - [ ] Dual tarot/dice calls
+- [ ] Help function via `!tarot ?`
+- [ ] Change "state" to "Kult: !tarot ?"
