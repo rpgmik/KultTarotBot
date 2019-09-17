@@ -9,7 +9,7 @@ Usage (in Discord):
 - [x] ~Crescent card meanings incorrect~
 
 ### Feature requests
-- [ ] Ability to add comment with tarot draw
+- [x] ~Ability to add comment with tarot draw~
 - [ ] Dual tarot/dice calls
 - [ ] Help function via `!tarot ?`
 - [ ] Change "state" to "Kult: !tarot ?"
