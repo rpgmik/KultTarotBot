@@ -10,7 +10,7 @@ import random
 import discord
 
 ## Read in Discord bot token from file: tokenFile.txt
-f = open('devToken.txt', "r")
+f = open('tokenFile.txt', "r")
 TOKEN = f.readline().rstrip()
 f.close()
 
