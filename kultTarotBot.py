@@ -64,24 +64,23 @@ async def on_message(message):
         comment = ''
         sep = ' '
         if len(bits)>1:
-            if(bits[1]!="#"):
+            if(list(bits[1])[0]!="#"):
                 num = int(bits[1])
-            elif(bits[1]=="#"):
-                comment = sep.join(bits[2:])
+            elif(list(bits[1])[0]=="#"):
+                comment = sep.join(bits[1:])
+#            elif(list(bits[1])[0]=="!"):
+#                comment  = " "
+#                comment += bits[1:]
 
         if len(bits)>2:
-            if(bits[2]=="#"):
-                comment = sep.join(bits[3:])
-
-#        msg = ''
-#        if comment!='':
-#            msg =  '**'
-#            msg += comment
-#            msg += '**\n'
+            if(list(bits[2])[0]=="#"):
+                comment = sep.join(bits[2:])
+#            elif(list(bits[2])[0]=="!"):
+#                comment  = " "
+#                comment += bits[2:]
 
         msg = '```md\n'
         if comment!='':
-            msg += "# "
             msg += comment
             msg += '\n'
 
