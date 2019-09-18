@@ -22,3 +22,4 @@ Usage (in Discord):
 - [x] ~Add template draws~
 - [x] ~Add comments for template draws~ 
 - [ ] Dual tarot/dice calls
+- [ ] Choose to draw from either Major or Minor arcana
