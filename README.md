@@ -12,7 +12,7 @@ Usage (in Discord):
 
 ### Bugs
 - [x] ~Crescent card meanings incorrect~
-- [ ] Fix extra colon in help message...
+- [x] Fix extra colon in help message...
 
 ### Feature requests
 - [x] ~Ability to add comment with tarot draw~

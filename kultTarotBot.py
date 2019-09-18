@@ -154,7 +154,7 @@ async def on_message(message):
                 msg += '!tarot n # comment - adds a comment to the output\n'
                 msg += '!tarot ?xxx - lists card definitions for template xxx\n'
                 msg += '!tarot xxx - makes a 5 card draw for template xxx\n'
-                msg += '# Templates: : individuals (ind), locations (loc), cults (cul), plots (plo), creatures (cre) or artifacts (art)\n'
+                msg += '# Templates: individuals (ind), locations (loc), cults (cul), plots (plo), creatures (cre) or artifacts (art)\n'
 
             if bits[1]=="?ind":
                 msg += nl.join(ind)
