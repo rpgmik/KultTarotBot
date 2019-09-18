@@ -10,6 +10,9 @@ Usage (in Discord):
 
 ### Feature requests
 - [x] ~Ability to add comment with tarot draw~
+- [x] ~Help function via `!tarot ?`~
+- [x] ~Change "state" to "Kult: !tarot ?"~
+- [x] ~Add help for templates~
+- [x] ~Add template draws~
+- [x] ~Add comments for template draws~ 
 - [ ] Dual tarot/dice calls
-- [ ] Help function via `!tarot ?`
-- [ ] Change "state" to "Kult: !tarot ?"
