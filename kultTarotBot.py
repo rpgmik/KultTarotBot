@@ -9,8 +9,18 @@
 import random
 import discord
 
-## Read in Discord bot token from file: tokenFile.txt
-f = open('tokenFile.txt', "r")
+## Ascertain mode: dev or production
+m = open('modeFile.txt', "r")
+MODE = m.readline().rstrip()
+m.close()
+
+## Read in Discord bot token from file
+if MODE=="prod":
+    tokenFile = 'prodToken.txt'
+elif MODE=="dev":
+    tokenFile = 'devToken.txt'
+
+f = open(tokenFile, "r")
 TOKEN = f.readline().rstrip()
 f.close()
 
@@ -46,6 +56,21 @@ names = ["Anthropos", "Demiurge", "Astaroth", "Kether - Hiearchy",
       	 "Six of Eyes - Rebellion", "Seven of Eyes - Madness",
       	 "Eight of Eyes - Visions", "Nine of Eyes - Enlightenment"]
 
+ind = ["# Individual", "Card 1: A core Characteristic of the individual.",
+"Card 2: Something from the Past that shaped the individual.", "Card 3: An Ambition that drives the individual.", "Card 4: The individual’s greatest Weakness.", "Card 5: The individual’s greatest Strength."]
+
+loc = ["# Location", "Card 1: The Type of location.", "Card 2: Something about the location’s Past.", "Card 3: An unexpected or quirky Trait.", "Card 4: A Weakness at the location, which might be exploited.", "Card 5: Something that makes the location Exceptional."]
+
+cul = ["# Cult", "Card 1: What Power/Ambition Drives the cult?", "Card 2: An important thing about the cult’s History.", "Card 3: What does the cult wish to Accomplish?", "Card 4: What is the cult’s Weakness, such as enemies?", "Card 5: What is the cult’s unexpected Resource?"]
+
+plo = ["# Plot", "Card 1: What is the Power behind the plot?", "Card 2: What Caused the plot?", "Card 3: What is the Next Move in the plot?", "Card 4: What power Opposes the plot?", "Card 5: What power Supports the plot?"]
+
+cre = ["# Creature", "Card 1: From what background does the creature Originate?", "Card 2: From where can you find Information about the creature?", "Card 3: What Drives the creature?", "Card 4: What is the creature’s Weakness?", "Card 5: What is the creature’s Strength?"]
+
+art = ["# Artifact", "Card 1: From where does the Artifact Originate?", "Card 2: Who else is Looking for It?", "Card 3: What are the Dangers in using it?", "Card 4: What is its Primary Power?", "Card 5: What is its Secondary Power?"]
+
+cards = ''
+
 ## Get discord connection
 client = discord.Client()
 
@@ -59,47 +84,104 @@ async def on_message(message):
         ## Split into into "!tarot" and number of cards to draw
         bits = message.content.split(" ")
 
-        ## Use 5 cards if not defined, otherwise convert to integer
-        num = 5
+        num = ''
         comment = ''
         sep = ' '
+        nl='\n'
+
+        # If no other arguments, default to drawing 5 cards
+        if len(bits)==1:
+            num = 5
+
         if len(bits)>1:
-            if(list(bits[1])[0]!="#"):
-                num = int(bits[1])
-            elif(list(bits[1])[0]=="#"):
+            if list(bits[1])[0]=="#":
                 comment = sep.join(bits[1:])
-#            elif(list(bits[1])[0]=="!"):
-#                comment  = " "
-#                comment += bits[1:]
+                num = 5
+            elif list(bits[1])[0]=="?":
+                comment = ''
+            elif bits[1] in ["ind", "loc", "cul", "plo", "cre", "art"]:
+                num = 5
+                if bits[1]=="ind":
+                    tmp = ind
+                elif bits[1]=="loc":
+                    tmp = loc
+                elif bits[1]=="cul":
+                    tmp = cul
+                elif bits[1]=="plo":
+                    tmp = plo
+                elif bits[1]=="cre":
+                    tmp = cre
+                elif bits[1]=="art":
+                    tmp = art
+
+            elif isinstance(int(list(bits[1])[0]),int):
+                num = int(bits[1])
 
         if len(bits)>2:
             if(list(bits[2])[0]=="#"):
                 comment = sep.join(bits[2:])
-#            elif(list(bits[2])[0]=="!"):
-#                comment  = " "
-#                comment += bits[2:]
 
         msg = '```md\n'
         if comment!='':
             msg += comment
             msg += '\n'
 
-        ## Restrict/check the number of cards to be drawn
-        if num>10:
-            num = 10
-            msg = '10 is the maximum number of cards.\n\n'
+        if isinstance(num, int):
+            ## Restrict/check the number of cards to be drawn
+            if num>10:
+                num = 10
+                msg = '10 is the maximum number of cards.\n\n'
 
-        if num<1:
-            num = 1
-            msg = 'You must draw at least 1 card.\n\n'
+            if num<1:
+                num = 1
+                msg = 'You must draw at least 1 card.\n\n'
 
-        ## Draw a randow sample (without replacement) from list of cards
-        cards = random.sample(names, k=num)
+            ## Draw a randow sample (without replacement) from list of cards
+            cards = random.sample(names, k=num)
 
-        ## Loop through 1 to n, adding card number and descriptor to message each time
-        ## Creates a single string, with newline characters separateing each card.
-        for i in range(1, num+1):
-            msg+='Card {0}: {1}\n'.format(i, cards[i-1])
+            ## Loop through 1 to n, adding card number and descriptor to message each time
+            ## Creates a single string, with newline characters separateing each card.
+            for i in range(1, num+1):
+                msg+='Card {0}: {1}\n'.format(i, cards[i-1])
+
+        if len(bits) > 1 and list(bits[1])[0]=="?":
+            msg = '```md\n'
+            if bits[1]=="?":
+                msg += '# Usage:\n'
+                msg += '!tarot ? - displays this message\n'
+                msg += '!tarot - generates 5 cards\n'
+                msg += '!tarot n - generates n cards (1-10)\n'
+                msg += '!tarot n # comment - adds a comment to the output\n'
+                msg += '!tarot ?xxx - lists card definitions for template xxx\n'
+                msg += '!tarot xxx - makes a 5 card draw for template xxx\n'
+                msg += '# Templates: : individuals (ind), locations (loc), cults (cul), plots (plo), creatures (cre) or artifacts (art)\n'
+
+            if bits[1]=="?ind":
+                msg += nl.join(ind)
+
+            elif bits[1]=="?loc":
+                msg += nl.join(loc)
+
+            elif bits[1]=="?cul":
+                msg += nl.join(cul)
+
+            elif bits[1]=="?plo":
+                msg += nl.join(plo)
+
+            elif bits[1]=="?cre":
+                msg += nl.join(cre)
+
+            elif bits[1]=="?art":
+                msg += nl.join(art)
+
+        if len(bits) > 1 and bits[1] in ["ind", "loc", "cul", "plo", "cre", "art"]:
+            msg = '```md\n'
+            msg += tmp[0]
+            msg += ":"
+            msg += comment[1:]
+            msg += "\n"
+            for i in range(0,5):
+                msg += '{0}\n#       {1}\n'.format(tmp[i+1], cards[i])
 
         msg+='```'
 
