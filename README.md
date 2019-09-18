@@ -2,8 +2,13 @@
 Very simple Python-based Discord bot for drawing Tarot cards in the Kult Divinity Lost roleplaying game.
 
 Usage (in Discord): 
-- `!tarot` - draws 5 tarot cards.
-- `!tarot n` - draws n tarot cards, where n is from 1 to 10 inclusive.
+- `!tarot ?` - displays this message
+- `!tarot` - generates 5 cards
+- `!tarot n` - generates n cards (1-10)
+- `!tarot n # comment` - adds a comment to the output
+- `!tarot ?xxx` - lists card definitions for template xxx
+- `!tarot xxx` - makes a 5 card draw for template xxx
+- Templates: : individuals (ind), locations (loc), cults (cul), plots (plo), creatures (cre) or artifacts (art)
 
 ### Bugs
 - [x] ~Crescent card meanings incorrect~
