@@ -56,6 +56,9 @@ names = ["Anthropos", "Demiurge", "Astaroth", "Kether - Hiearchy",
       	 "Six of Eyes - Rebellion", "Seven of Eyes - Madness",
       	 "Eight of Eyes - Visions", "Nine of Eyes - Enlightenment"]
 
+majorArcana = names[:23]
+minorArcana = names[23:]
+
 ind = ["# Individual", "Card 1: A core Characteristic of the individual.",
 "Card 2: Something from the Past that shaped the individual.", "Card 3: An Ambition that drives the individual.", "Card 4: The individual’s greatest Weakness.", "Card 5: The individual’s greatest Strength."]
 
@@ -77,6 +80,8 @@ client = discord.Client()
 ## Define an event so that Bot can read messages
 @client.event
 async def on_message(message):
+
+    global names
 
     ## Respond if user sends "!tarot"
     if message.content.startswith('!tarot'):
@@ -116,10 +121,19 @@ async def on_message(message):
 
             elif isinstance(int(list(bits[1])[0]),int):
                 num = int(bits[1])
+                if len(bits) > 2:
+                    if bits[2] in ["major", "maj"]:
+                        names = majorArcana
+                    elif bits[2] in ["minor", "min"]:
+                        names = minorArcana
 
         if len(bits)>2:
             if(list(bits[2])[0]=="#"):
                 comment = sep.join(bits[2:])
+
+        if len(bits)>3:
+            if(list(bits[3])[0]=="#"):
+                comment = sep.join(bits[3:])
 
         msg = '```md\n'
         if comment!='':
@@ -149,9 +163,11 @@ async def on_message(message):
             if bits[1]=="?":
                 msg += '# Usage:\n'
                 msg += '!tarot ? - displays this message\n'
-                msg += '!tarot - generates 5 cards\n'
-                msg += '!tarot n - generates n cards (1-10)\n'
+                msg += '!tarot - draws 5 cards\n'
+                msg += '!tarot n - draws n cards (1-10)\n'
                 msg += '!tarot n # comment - adds a comment to the output\n'
+                msg += '!tarot n maj - draws n cards from the major arcana\n'
+                msg += '!tarot n min - draws n cards from the minor arcana\n'
                 msg += '!tarot ?xxx - lists card definitions for template xxx\n'
                 msg += '!tarot xxx - makes a 5 card draw for template xxx\n'
                 msg += '# Templates: individuals (ind), locations (loc), cults (cul), plots (plo), creatures (cre) or artifacts (art)\n'
