@@ -160,7 +160,7 @@ async def on_message(message):
 
         if len(bits) > 1 and list(bits[1])[0]=="?":
             msg = '```md\n'
-            if bits[1]=="?":
+            if bits[1] in ["?","help"]:
                 msg += '# Usage:\n'
                 msg += '!tarot ? - displays this message\n'
                 msg += '!tarot - draws 5 cards\n'
