@@ -25,7 +25,7 @@ TOKEN = f.readline().rstrip()
 f.close()
 
 ## Define cards
-names = ["Anthropos", "Demiurge", "Astaroth", "Kether - Hiearchy",
+names = ["Anthropos", "Demiurge", "Astaroth", "Kether - Hierarchy",
          "Chokmah - Submission", "Binah - Community", "Chesed - Safety",
          "Geburah - Law", "Tiphareth - Allure", "Netzach - Victory",
          "Hod - Honor", "Yesod - Avarice", "Malkuth - Awakening",
