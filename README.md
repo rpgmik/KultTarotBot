@@ -11,15 +11,15 @@ Usage (in Discord):
 - Templates: individuals (ind), locations (loc), cults (cul), plots (plo), creatures (cre) or artifacts (art)
 
 ### Bugs
-- [x] ~Crescent card meanings incorrect~
-- [x] Fix extra colon in help message...
+- ~Crescent card meanings incorrect~
+- ~Fix extra colon in help message...~
 
 ### Feature requests
-- [x] ~Ability to add comment with tarot draw~
-- [x] ~Help function via `!tarot ?`~
-- [x] ~Change "state" to "Kult: !tarot ?"~
-- [x] ~Add help for templates~
-- [x] ~Add template draws~
-- [x] ~Add comments for template draws~ 
-- [ ] Dual tarot/dice calls
-- [x] Choose to draw from either Major or Minor arcana
+- ~Ability to add comment with tarot draw~
+- ~Help function via `!tarot ?`~
+- ~Change "state" to "Kult: !tarot ?"~
+- ~Add help for templates~
+- ~Add template draws~
+- ~Add comments for template draws~ 
+- Dual tarot/dice calls
+- ~Choose to draw from either Major or Minor arcana~
