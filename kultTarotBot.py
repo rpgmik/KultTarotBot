@@ -52,7 +52,7 @@ names = ["Anthropos", "Demiurge", "Astaroth", "Kether - Hierarchy",
       	 "Seven of Crescents - Reflection", "Eight of Crescents - Repetition",
       	 "Nine of Crescents - Stillness", "One of Eyes - Elysium",
       	 "Two of Eyes - Imprisonment", "Three of Eyes - Faith",
-      	 "Four of Eyes - Distractions", "Five of Eyes - Divison",
+      	 "Four of Eyes - Distractions", "Five of Eyes - Division",
       	 "Six of Eyes - Rebellion", "Seven of Eyes - Madness",
       	 "Eight of Eyes - Visions", "Nine of Eyes - Enlightenment"]
 
