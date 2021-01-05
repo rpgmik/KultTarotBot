@@ -39,7 +39,7 @@ names = ["Anthropos", "Demiurge", "Astaroth", "Kether - Hierarchy",
       	 "Eight of Skulls - Suffering", "Nine of Skulls - Inferno",
       	 "One of Roses - Gaia", "Two of Roses - Birth",
       	 "Three of Roses - Survival", "Four of Roses - Growth",
-      	 "Five of Roses - Predator", "Six of Roses - Swarm",
+     	 "Five of Roses - Predator", "Six of Roses - Swarm",
       	 "Seven of Roses - Prey", "Eight of Roses - Obsession",
       	 "Nine of Roses - Love", "One of Hourglasses - Achlys",
       	 "Two of Hourglasses - Future", "Three of Hourglasses - Past",
@@ -94,6 +94,8 @@ async def on_message(message):
         sep = ' '
         nl='\n'
 
+##        print(bits)
+
         # If no other arguments, default to drawing 5 cards
         if len(bits)==1:
             num = 5
@@ -103,6 +105,8 @@ async def on_message(message):
                 comment = sep.join(bits[1:])
                 num = 5
             elif list(bits[1])[0]=="?":
+                comment = ''
+            elif bits[1]=="info":
                 comment = ''
             elif bits[1] in ["ind", "loc", "cul", "plo", "cre", "art"]:
                 num = 5
@@ -163,6 +167,7 @@ async def on_message(message):
             if bits[1] in ["?","help"]:
                 msg += '# Usage:\n'
                 msg += '!tarot ? - displays this message\n'
+                msg += "!tarot info - displays bot code info\n"
                 msg += '!tarot - draws 5 cards\n'
                 msg += '!tarot n - draws n cards (1-10)\n'
                 msg += '!tarot n # comment - adds a comment to the output\n'
@@ -199,9 +204,22 @@ async def on_message(message):
             for i in range(0,5):
                 msg += '{0}\n#       {1}\n'.format(tmp[i+1], cards[i])
 
+        ## Bot info
+        if len(bits) > 1 and bits[1]=="info":
+            msg = '```md\n'
+            msg += '# KultTarotBot\n'
+            msg += 'Code available at: https://github.com/rpgmik/KultTarotBot\n'
+            ## Collect server install info
+            msg += 'Currently running on ' + str(len(list(client.guilds))) + ' Discord guilds.\n'
+
         msg+='```'
 
+##        print('bits[1]='+bits[1]+'\n')
         ## Send message to channel
+
+##        print(bits)
+##        print(msg)
+
         await message.channel.send(msg)
 
 ## Write login details locally (i.e., on linux box where bot code is running)
