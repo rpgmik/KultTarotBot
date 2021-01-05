@@ -3,6 +3,7 @@ Very simple Python-based Discord bot for drawing Tarot cards in the Kult Divinit
 
 Usage (in Discord): 
 - `!tarot ?` - displays this message
+- `!tarot info` - displays bot code info
 - `!tarot` - generates 5 cards
 - `!tarot n` - generates n cards (1-10)
 - `!tarot n # comment` - adds a comment to the output
